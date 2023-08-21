@@ -25,7 +25,7 @@ public class GmailService {
         this.gmail = gmail;
     }
 
-    public void sendEmail(String toAddress, String subject, String content) throws Exception, EmailFailedToSendException {
+    public void sendEmail(String toAddress, String subject, String content) throws Exception {
 
         Properties prop = new Properties();
         Session session = Session.getInstance(prop, null);
