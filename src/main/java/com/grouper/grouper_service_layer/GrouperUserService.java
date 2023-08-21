@@ -2,6 +2,8 @@ package com.grouper.grouper_service_layer;
 
 import com.grouper.grouper_exception_control.EmailAlreadyTakenException;
 import com.grouper.grouper_exception_control.EmailFailedToSendException;
+import com.grouper.grouper_exception_control.IncorrectVerificationCodeException;
+import com.grouper.grouper_exception_control.IncorrectVerificationCodeException;
 import com.grouper.grouper_exception_control.UserDoesNotExistException;
 import com.grouper.grouper_model.GrouperRegistrationObject;
 import com.grouper.grouper_model.GrouperRole;
@@ -92,4 +94,20 @@ public class GrouperUserService {
          userRepository.save(users);
     }
 
+    public GrouperUser verifyEmail(String username, Long code) {
+
+        GrouperUser users = userRepository.findByUsername(username)
+                .orElseThrow(UserDoesNotExistException::new);
+
+        users.setVerification(GrouperUtility.generateCode());
+
+        if (code.equals(users.getVerification())) {
+            users.setEnabled(true);
+            users.setVerification(null);
+
+            return userRepository.save(users);
+        } else {
+            throw new IncorrectVerificationCodeException();
+        }
+    }
 }

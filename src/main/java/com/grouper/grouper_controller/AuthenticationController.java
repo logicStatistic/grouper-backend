@@ -2,6 +2,7 @@ package com.grouper.grouper_controller;
 
 import com.grouper.grouper_exception_control.EmailAlreadyTakenException;
 import com.grouper.grouper_exception_control.EmailFailedToSendException;
+import com.grouper.grouper_exception_control.IncorrectVerificationCodeException;
 import com.grouper.grouper_exception_control.UserDoesNotExistException;
 import com.grouper.grouper_model.GrouperRegistrationObject;
 import com.grouper.grouper_model.GrouperUser;
@@ -56,10 +57,24 @@ public class AuthenticationController {
         return new ResponseEntity<String>("Email failed to send",
                 HttpStatus.INTERNAL_SERVER_ERROR);
     }
-    @PostMapping("/verify_email")
+    @PostMapping("/verify_code")
     public ResponseEntity<String> createEmailVerification(@RequestBody LinkedHashMap<String, String> body) throws Exception {
         userService.generateVerificationCode(body.get("username"));
 
        return new ResponseEntity<String>("Verification code sent to your email successfully", HttpStatus.OK);
+    }
+
+    @ExceptionHandler({IncorrectVerificationCodeException.class})
+    public ResponseEntity<String> IncorrectCodeMsg(){
+        return new ResponseEntity<String>("Incorrect verification code ", HttpStatus.CONFLICT);
+    }
+
+    @PostMapping("/verify_email")
+    public GrouperUser verifyEmail(@RequestBody LinkedHashMap<String, String> body){
+
+        Long code = Long.parseLong(body.get("code"));
+        String username = body.get("username");
+
+        return userService.verifyEmail(username, code);
     }
 }

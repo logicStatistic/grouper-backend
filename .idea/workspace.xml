@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="21032da1-fc6a-4697-b8d8-191fd11426ed" name="Changes" comment="Grouper Social">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/grouper/grouper_exception_control/IncorrectVerificationCodeException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/grouper/grouper_controller/AuthenticationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grouper/grouper_controller/AuthenticationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/grouper/grouper_service_layer/GmailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grouper/grouper_service_layer/GmailService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/grouper/grouper_service_layer/GrouperUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grouper/grouper_service_layer/GrouperUserService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
