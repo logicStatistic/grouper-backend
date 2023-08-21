@@ -1,6 +1,7 @@
 package com.grouper.grouper_service_layer;
 
 import com.grouper.grouper_exception_control.EmailAlreadyTakenException;
+import com.grouper.grouper_exception_control.EmailFailedToSendException;
 import com.grouper.grouper_exception_control.UserDoesNotExistException;
 import com.grouper.grouper_model.GrouperRegistrationObject;
 import com.grouper.grouper_model.GrouperRole;
@@ -10,7 +11,6 @@ import com.grouper.grouper_repository.GrouperUserRepository;
 import com.grouper.grouper_utility_control.GrouperUtility;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
@@ -24,6 +24,9 @@ public class GrouperUserService {
 
     @Autowired
     private final GrouperRoleRepository roleRepository;
+
+    @Autowired
+    private final GmailService gmailService;
 
     public GrouperUser registerNewUser(GrouperRegistrationObject regObject){
 
@@ -69,11 +72,23 @@ public class GrouperUserService {
             throw new EmailAlreadyTakenException();
         }
     }
-    public void generateVerificationCode(String username) {
+    public void generateVerificationCode(String username) throws Exception {
         GrouperUser users = userRepository.findByUsername(username)
                 .orElseThrow(UserDoesNotExistException::new);
 
         users.setVerification(GrouperUtility.generateCode());
+
+        try {
+            gmailService.sendEmail(users.getEmail(), "VERIFICATION CODE",
+                    "Your verification code:  " + users.getVerification());
+
+            userRepository.save(users);
+
+        }catch (Exception e){
+
+            throw new EmailFailedToSendException();
+
+        }
          userRepository.save(users);
     }
 

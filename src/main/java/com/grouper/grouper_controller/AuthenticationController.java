@@ -57,7 +57,7 @@ public class AuthenticationController {
                 HttpStatus.INTERNAL_SERVER_ERROR);
     } */
     @PostMapping("/verify_email")
-    public ResponseEntity<String> createEmailVerification(@RequestBody LinkedHashMap<String, String> body){
+    public ResponseEntity<String> createEmailVerification(@RequestBody LinkedHashMap<String, String> body) throws Exception {
         userService.generateVerificationCode(body.get("username"));
 
        return new ResponseEntity<String>("Verification code sent to your email successfully", HttpStatus.OK);
