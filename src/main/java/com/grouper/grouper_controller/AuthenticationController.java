@@ -1,6 +1,7 @@
 package com.grouper.grouper_controller;
 
 import com.grouper.grouper_exception_control.EmailAlreadyTakenException;
+import com.grouper.grouper_exception_control.EmailFailedToSendException;
 import com.grouper.grouper_exception_control.UserDoesNotExistException;
 import com.grouper.grouper_model.GrouperRegistrationObject;
 import com.grouper.grouper_model.GrouperUser;
@@ -50,7 +51,11 @@ public class AuthenticationController {
 
         return userService.updateUser(users);
     }
-
+    @ExceptionHandler({EmailFailedToSendException.class})
+    public ResponseEntity<String> HandlerMSSG(){
+        return new ResponseEntity<String>("Email failed to send",
+                HttpStatus.INTERNAL_SERVER_ERROR);
+    }
     @PostMapping("/verify_email")
     public ResponseEntity<String> createEmailVerification(@RequestBody LinkedHashMap<String, String> body){
         userService.generateVerificationCode(body.get("username"));
