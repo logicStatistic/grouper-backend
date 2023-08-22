@@ -2,8 +2,7 @@ package com.grouper.grouper_service_layer;
 
 import com.grouper.grouper_exception_control.EmailAlreadyTakenException;
 import com.grouper.grouper_exception_control.EmailFailedToSendException;
-import com.grouper.grouper_exception_control.IncorrectVerificationCodeException;
-import com.grouper.grouper_exception_control.IncorrectVerificationCodeException;
+import com.grouper.grouper_exception_control.IncorrectVerificationCodeException;;
 import com.grouper.grouper_exception_control.UserDoesNotExistException;
 import com.grouper.grouper_model.GrouperRegistrationObject;
 import com.grouper.grouper_model.GrouperRole;
@@ -13,6 +12,7 @@ import com.grouper.grouper_repository.GrouperUserRepository;
 import com.grouper.grouper_utility_control.GrouperUtility;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
@@ -29,6 +29,9 @@ public class GrouperUserService {
 
     @Autowired
     private final GmailService gmailService;
+
+    @Autowired
+    private final PasswordEncoder passwordEncoder;
 
     public GrouperUser registerNewUser(GrouperRegistrationObject regObject){
 
@@ -99,8 +102,6 @@ public class GrouperUserService {
         GrouperUser users = userRepository.findByUsername(username)
                 .orElseThrow(UserDoesNotExistException::new);
 
-        users.setVerification(GrouperUtility.generateCode());
-
         if (code.equals(users.getVerification())) {
             users.setEnabled(true);
             users.setVerification(null);
@@ -109,5 +110,15 @@ public class GrouperUserService {
         } else {
             throw new IncorrectVerificationCodeException();
         }
+    }
+
+    public GrouperUser updatePassword(String username, String password) {
+        GrouperUser users = userRepository.findByUsername(username)
+                .orElseThrow(UserDoesNotExistException::new);
+
+        String encodedPassword = passwordEncoder.encode(password);
+        users.setPassword(encodedPassword);
+
+        return userRepository.save(users);
     }
 }

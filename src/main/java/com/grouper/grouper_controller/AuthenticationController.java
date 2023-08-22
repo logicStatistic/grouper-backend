@@ -77,4 +77,12 @@ public class AuthenticationController {
 
         return userService.verifyEmail(username, code);
     }
+
+    @PutMapping("/update_password")
+    public GrouperUser updatePassword(@RequestBody LinkedHashMap<String, String> body){
+           String username = body.get("username");
+           String password = body.get("password");
+
+           return userService.updatePassword(username, password);
+    }
 }

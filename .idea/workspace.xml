@@ -5,9 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="21032da1-fc6a-4697-b8d8-191fd11426ed" name="Changes" comment="Grouper Social">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/grouper/grouper_exception_control/IncorrectVerificationCodeException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/grouper/grouper_controller/AuthenticationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grouper/grouper_controller/AuthenticationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/grouper/grouper_security_config/GrouperSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grouper/grouper_security_config/GrouperSecurityConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/grouper/grouper_service_layer/GrouperUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/grouper/grouper_service_layer/GrouperUserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/grouper/grouper_controller/AuthenticationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/grouper/grouper_controller/AuthenticationController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/grouper/grouper_security_config/GrouperSecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/grouper/grouper_security_config/GrouperSecurityConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/grouper/grouper_service_layer/GrouperUserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/grouper/grouper_service_layer/GrouperUserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tokens/StoredCredential" beforeDir="false" afterPath="$PROJECT_DIR$/tokens/StoredCredential" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
