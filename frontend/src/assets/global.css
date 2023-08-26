@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
+
+*{
+    box-sizing: border-box;
+}
+
+html, body, #root{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.bg-color{
+    background-color: aliceblue;
+}
+
+.bg-black{
+    background-color:  #000000;
+}
+
+.color-black{
+    color: #000000;
+}
+
+.bg-red{
+    background-color: red;
+}
+
+.bg-gray{
+    border: gray;
+}
+.color-gray{
+    color: gray;
+}
