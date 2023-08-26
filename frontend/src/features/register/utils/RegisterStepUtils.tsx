@@ -22,3 +22,9 @@ export const displayIcon = (step: number):React.ReactNode =>{
 
     }
 }
+export const iconClass = (step: number):string =>{
+    if (step == 4 || step == 6){
+    return "reg-step-counter-btn-disabled";
+    }
+    return "reg-step-counter-btn"
+}
